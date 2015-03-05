@@ -1,7 +1,6 @@
 package com.laricafood.bean;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by rodrigo.bacellar on 04/03/2015.
@@ -9,63 +8,23 @@ import java.util.List;
 public class Estabelecimento {
 
     private int id;
-
-    private String nome;
-
-    private String endereco;
-
-    private int proprietario;
-
-    private String bairro;
-
-    private String cidade;
-
-    private float latitude;
-
-    private float longitude;
-
-    private float pontuacao;
-
-    private int qntVotos;
-
-    private List<String> fotos;
-
+    private String name;
+    private User proprietario_id;
+    private String address;
+    private String neighborhood;
+    private String city;
+    private Float latitude;
+    private Float longitude;
+    private Float pontuacao;
+    private int votos;
+    private String foto1;
+    private String foto2;
+    private String foto3;
+    private String foto4;
     private Date createDate;
-
     private Date updateDate;
 
     public Estabelecimento() {
-        super();
-    }
-
-    public Estabelecimento(String nome, String endereco, String bairro, String cidade, List<String> fotos,
-                           int proprietario) {
-        super();
-        this.nome = nome;
-        this.endereco = endereco;
-        this.proprietario = proprietario;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.fotos = fotos;
-    }
-
-    public Estabelecimento(int id, String nome, String endereco, int proprietario, String bairro, String cidade,
-                           float latitude, float longitude, float pontuacao, int qntVotos, List<String> fotos, Date createDate,
-                           Date updateDate) {
-        super();
-        this.id = id;
-        this.nome = nome;
-        this.endereco = endereco;
-        this.proprietario = proprietario;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.pontuacao = pontuacao;
-        this.qntVotos = qntVotos;
-        this.fotos = fotos;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
     }
 
     public int getId() {
@@ -76,84 +35,108 @@ public class Estabelecimento {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public User getProprietario_id() {
+        return proprietario_id;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setProprietario_id(User proprietario_id) {
+        this.proprietario_id = proprietario_id;
     }
 
-    public int getProprietario() {
-        return proprietario;
+    public String getAddress() {
+        return address;
     }
 
-    public void setProprietario(int proprietario) {
-        this.proprietario = proprietario;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getCity() {
+        return city;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public float getLatitude() {
+    public Float getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(Float latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public Float getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(Float longitude) {
         this.longitude = longitude;
     }
 
-    public float getPontuacao() {
+    public Float getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(float pontuacao) {
+    public void setPontuacao(Float pontuacao) {
         this.pontuacao = pontuacao;
     }
 
-    public int getQntVotos() {
-        return qntVotos;
+    public int getVotos() {
+        return votos;
     }
 
-    public void setQntVotos(int qntVotos) {
-        this.qntVotos = qntVotos;
+    public void setVotos(int votos) {
+        this.votos = votos;
     }
 
-    public List<String> getFotos() {
-        return fotos;
+    public String getFoto1() {
+        return foto1;
     }
 
-    public void setFotos(List<String> fotos) {
-        this.fotos = fotos;
+    public void setFoto1(String foto1) {
+        this.foto1 = foto1;
+    }
+
+    public String getFoto2() {
+        return foto2;
+    }
+
+    public void setFoto2(String foto2) {
+        this.foto2 = foto2;
+    }
+
+    public String getFoto3() {
+        return foto3;
+    }
+
+    public void setFoto3(String foto3) {
+        this.foto3 = foto3;
+    }
+
+    public String getFoto4() {
+        return foto4;
+    }
+
+    public void setFoto4(String foto4) {
+        this.foto4 = foto4;
     }
 
     public Date getCreateDate() {
@@ -174,10 +157,23 @@ public class Estabelecimento {
 
     @Override
     public String toString() {
-        return "Estabelecimento [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", proprietario="
-                + proprietario + ", bairro=" + bairro + ", cidade=" + cidade + ", latitude=" + latitude
-                + ", longitude=" + longitude + ", pontuacao=" + pontuacao + ", qntVotos=" + qntVotos + ", fotos="
-                + fotos + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+        return "Estabelecimento{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", proprietario_id=" + proprietario_id +
+                ", address='" + address + '\'' +
+                ", neighborhood='" + neighborhood + '\'' +
+                ", city='" + city + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", pontuacao=" + pontuacao +
+                ", votos=" + votos +
+                ", foto1='" + foto1 + '\'' +
+                ", foto2='" + foto2 + '\'' +
+                ", foto3='" + foto3 + '\'' +
+                ", foto4='" + foto4 + '\'' +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                '}';
     }
-
 }

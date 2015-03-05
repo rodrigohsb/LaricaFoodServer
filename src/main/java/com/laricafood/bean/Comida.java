@@ -9,17 +9,15 @@ public class Comida {
 
     private String name;
 
-    private Category category;
+    private int category_id;
 
     public Comida() {
-        super();
     }
 
-    public Comida(int id, String name, Category category) {
-        super();
+    public Comida(int id, String name, int category_id) {
         this.id = id;
         this.name = name;
-        this.category = category;
+        this.category_id = category_id;
     }
 
     public int getId() {
@@ -38,18 +36,21 @@ public class Comida {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public int getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
     }
 
     @Override
     public String toString() {
-        return "Comida [id=" + id + ", name=" + name + ", category=" + category + "]";
+        return "Comida{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category_id=" + category_id +
+                '}';
     }
-
 }
 
