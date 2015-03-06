@@ -9,16 +9,7 @@ public class Comida {
 
     private String name;
 
-    private int category_id;
-
-    public Comida() {
-    }
-
-    public Comida(int id, String name, int category_id) {
-        this.id = id;
-        this.name = name;
-        this.category_id = category_id;
-    }
+    private Category category;
 
     public int getId() {
         return id;
@@ -36,12 +27,12 @@ public class Comida {
         this.name = name;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
@@ -49,7 +40,7 @@ public class Comida {
         return "Comida{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", category_id=" + category_id +
+                ", category=" + category +
                 '}';
     }
 }

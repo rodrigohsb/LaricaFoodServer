@@ -1,6 +1,7 @@
 package com.laricafood.bean;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by rodrigo.bacellar on 04/03/2015.
@@ -9,7 +10,7 @@ public class Estabelecimento {
 
     private int id;
     private String name;
-    private User proprietario_id;
+    private User user_id;
     private String address;
     private String neighborhood;
     private String city;
@@ -23,6 +24,7 @@ public class Estabelecimento {
     private String foto4;
     private Date createDate;
     private Date updateDate;
+    private List<Comida> comidas;
 
     public Estabelecimento() {
     }
@@ -43,12 +45,12 @@ public class Estabelecimento {
         this.name = name;
     }
 
-    public User getProprietario_id() {
-        return proprietario_id;
+    public User getUser_id() {
+        return user_id;
     }
 
-    public void setProprietario_id(User proprietario_id) {
-        this.proprietario_id = proprietario_id;
+    public void setUser_id(User user_id) {
+        this.user_id = user_id;
     }
 
     public String getAddress() {
@@ -155,12 +157,20 @@ public class Estabelecimento {
         this.updateDate = updateDate;
     }
 
+    public List<Comida> getComidas() {
+        return comidas;
+    }
+
+    public void setComidas(List<Comida> comidas) {
+        this.comidas = comidas;
+    }
+
     @Override
     public String toString() {
         return "Estabelecimento{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", proprietario_id=" + proprietario_id +
+                ", user_id=" + user_id +
                 ", address='" + address + '\'' +
                 ", neighborhood='" + neighborhood + '\'' +
                 ", city='" + city + '\'' +
@@ -174,6 +184,7 @@ public class Estabelecimento {
                 ", foto4='" + foto4 + '\'' +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
+                ", comidas=" + comidas +
                 '}';
     }
 }
