@@ -48,34 +48,7 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
 
         for (Map<String, Object> row : rows) {
 
-            User u = new User();
-            u.setType(UserType.PROPRETARIO);
-            u.setFacebookId((Integer) row.get("facebook_id"));
-            u.setCreateDate((Date) row.get("creationDate"));
-            u.setUpdateDate((Date) row.get("updateDate"));
-
-            Estabelecimento estabelecimento = new Estabelecimento();
-
-            estabelecimento.setId((Integer) row.get("id"));
-            estabelecimento.setName((String) row.get("name"));
-            estabelecimento.setUser_id(u);
-            estabelecimento.setAddress((String) row.get("address"));
-            estabelecimento.setNeighborhood((String) row.get("neighborhood"));
-            estabelecimento.setCity((String) row.get("city"));
-            estabelecimento.setLatitude((Float) row.get("latitude"));
-            estabelecimento.setLongitude((Float) row.get("longitude"));
-            estabelecimento.setPontuacao((Float) row.get("pontuacao"));
-            estabelecimento.setVotos((Integer) row.get("votos"));
-
-            estabelecimento.setFoto1((String) row.get("foto1"));
-            estabelecimento.setFoto2((String) row.get("foto2"));
-            estabelecimento.setFoto3((String) row.get("foto3"));
-            estabelecimento.setFoto4((String) row.get("foto4"));
-
-            estabelecimento.setCreateDate((Date) row.get("creationDate"));
-            estabelecimento.setUpdateDate((Date) row.get("updateDate"));
-
-            estabelecimentos.add(estabelecimento);
+            estabelecimentos.add(populate(row));
         }
 
         return estabelecimentos;
@@ -94,36 +67,17 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
             @Override
             public Estabelecimento mapRow(ResultSet resultSet, int i) throws SQLException {
 
-                User u = new User();
-                u.setFacebookId(resultSet.getLong("U.id"));
-                u.setCreateDate(resultSet.getDate("U.creationDate"));
-                u.setUpdateDate(resultSet.getDate("U.updateDate"));
-                u.setType(resultSet.getInt("U.usertype_id") == 1 ? UserType.PROPRETARIO : UserType.CLIENTE);
-
-                Estabelecimento estabelecimento = new Estabelecimento();
-                estabelecimento.setId(resultSet.getInt("E.id"));
-                estabelecimento.setName(resultSet.getString("name"));
-                estabelecimento.setUser_id(u);
-                estabelecimento.setAddress(resultSet.getString("address"));
-                estabelecimento.setNeighborhood(resultSet.getString("neighborhood"));
-                estabelecimento.setCity(resultSet.getString("city"));
-                estabelecimento.setLatitude(resultSet.getFloat("latitude"));
-                estabelecimento.setLongitude(resultSet.getFloat("longitude"));
-                estabelecimento.setPontuacao(resultSet.getFloat("pontuacao"));
-                estabelecimento.setVotos(resultSet.getInt("votos"));
-                estabelecimento.setFoto1(resultSet.getString("foto1"));
-                estabelecimento.setFoto2(resultSet.getString("foto2"));
-                estabelecimento.setFoto3(resultSet.getString("foto3"));
-                estabelecimento.setFoto4(resultSet.getString("foto4"));
-                estabelecimento.setCreateDate(resultSet.getDate("E.creationDate"));
-                estabelecimento.setUpdateDate(resultSet.getDate("E.updateDate"));
-
-                return estabelecimento;
+                return populate(resultSet);
             }
         });
         return estabelecimento;
     }
 
+    /**
+     * @param id
+     * @param userId
+     * @return
+     */
     public boolean delete(final int id, final Long userId) {
 
         int rows = jdbcTemplate.update("DELETE FROM ESTABELECIMENTO WHERE ID = ? AND USER_ID = ?", new Object[]{id, userId});
@@ -225,38 +179,81 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
 
         for (Map<String, Object> row : rows) {
 
-            User u = new User();
-            u.setType(UserType.PROPRETARIO);
-            u.setFacebookId((Integer) row.get("facebook_id"));
-            u.setCreateDate((Date) row.get("creationDate"));
-            u.setUpdateDate((Date) row.get("updateDate"));
-
-            Estabelecimento estabelecimento = new Estabelecimento();
-
-            estabelecimento.setId((Integer) row.get("id"));
-            estabelecimento.setName((String) row.get("name"));
-            estabelecimento.setUser_id(u);
-            estabelecimento.setAddress((String) row.get("address"));
-            estabelecimento.setNeighborhood((String) row.get("neighborhood"));
-            estabelecimento.setCity((String) row.get("city"));
-            estabelecimento.setLatitude((Float) row.get("latitude"));
-            estabelecimento.setLongitude((Float) row.get("longitude"));
-            estabelecimento.setPontuacao((Float) row.get("pontuacao"));
-            estabelecimento.setVotos((Integer) row.get("votos"));
-
-            estabelecimento.setFoto1((String) row.get("foto1"));
-            estabelecimento.setFoto2((String) row.get("foto2"));
-            estabelecimento.setFoto3((String) row.get("foto3"));
-            estabelecimento.setFoto4((String) row.get("foto4"));
-
-            estabelecimento.setCreateDate((Date) row.get("creationDate"));
-            estabelecimento.setUpdateDate((Date) row.get("updateDate"));
-
-            estabelecimentos.add(estabelecimento);
+            estabelecimentos.add(populate(row));
         }
 
         return estabelecimentos;
     }
 
+
+    /**
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
+    private Estabelecimento populate(ResultSet resultSet) throws SQLException {
+
+        User u = new User();
+        u.setFacebookId(resultSet.getLong("U.id"));
+        u.setCreateDate(resultSet.getDate("U.creationDate"));
+        u.setUpdateDate(resultSet.getDate("U.updateDate"));
+        u.setType(resultSet.getInt("U.usertype_id") == 1 ? UserType.PROPRETARIO : UserType.CLIENTE);
+
+        Estabelecimento estabelecimento = new Estabelecimento();
+        estabelecimento.setId(resultSet.getInt("E.id"));
+        estabelecimento.setName(resultSet.getString("name"));
+        estabelecimento.setUser_id(u);
+        estabelecimento.setAddress(resultSet.getString("address"));
+        estabelecimento.setNeighborhood(resultSet.getString("neighborhood"));
+        estabelecimento.setCity(resultSet.getString("city"));
+        estabelecimento.setLatitude(resultSet.getFloat("latitude"));
+        estabelecimento.setLongitude(resultSet.getFloat("longitude"));
+        estabelecimento.setPontuacao(resultSet.getFloat("pontuacao"));
+        estabelecimento.setVotos(resultSet.getInt("votos"));
+        estabelecimento.setFoto1(resultSet.getString("foto1"));
+        estabelecimento.setFoto2(resultSet.getString("foto2"));
+        estabelecimento.setFoto3(resultSet.getString("foto3"));
+        estabelecimento.setFoto4(resultSet.getString("foto4"));
+        estabelecimento.setCreateDate(resultSet.getDate("E.creationDate"));
+        estabelecimento.setUpdateDate(resultSet.getDate("E.updateDate"));
+
+        return estabelecimento;
+    }
+
+    /**
+     * @param row
+     * @return
+     */
+    private Estabelecimento populate(Map<String, Object> row) {
+
+        User u = new User();
+        u.setType(UserType.PROPRETARIO);
+        u.setFacebookId((Integer) row.get("facebook_id"));
+        u.setCreateDate((Date) row.get("creationDate"));
+        u.setUpdateDate((Date) row.get("updateDate"));
+
+        Estabelecimento estabelecimento = new Estabelecimento();
+
+        estabelecimento.setId((Integer) row.get("id"));
+        estabelecimento.setName((String) row.get("name"));
+        estabelecimento.setUser_id(u);
+        estabelecimento.setAddress((String) row.get("address"));
+        estabelecimento.setNeighborhood((String) row.get("neighborhood"));
+        estabelecimento.setCity((String) row.get("city"));
+        estabelecimento.setLatitude((Float) row.get("latitude"));
+        estabelecimento.setLongitude((Float) row.get("longitude"));
+        estabelecimento.setPontuacao((Float) row.get("pontuacao"));
+        estabelecimento.setVotos((Integer) row.get("votos"));
+
+        estabelecimento.setFoto1((String) row.get("foto1"));
+        estabelecimento.setFoto2((String) row.get("foto2"));
+        estabelecimento.setFoto3((String) row.get("foto3"));
+        estabelecimento.setFoto4((String) row.get("foto4"));
+
+        estabelecimento.setCreateDate((Date) row.get("creationDate"));
+        estabelecimento.setUpdateDate((Date) row.get("updateDate"));
+
+        return estabelecimento;
+    }
 
 }
