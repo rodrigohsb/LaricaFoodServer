@@ -42,9 +42,11 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public List<Estabelecimento> getAll() {
 
+        String SQL_QUERY = "SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U ";
+
         List<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
 
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList("SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U ");
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY);
 
         for (Map<String, Object> row : rows) {
 
@@ -62,7 +64,9 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public Estabelecimento getByID(int id) {
 
-        Estabelecimento estabelecimento = jdbcTemplate.queryForObject("SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U WHERE E.ID = ?", new Object[]{id}, new RowMapper<Estabelecimento>() {
+        String SQL_QUERY = "SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U WHERE E.ID = ?";
+
+        Estabelecimento estabelecimento = jdbcTemplate.queryForObject(SQL_QUERY, new Object[]{id}, new RowMapper<Estabelecimento>() {
 
             @Override
             public Estabelecimento mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -73,6 +77,21 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return estabelecimento;
     }
 
+    public List<Estabelecimento> getByCategory(int categoryId) {
+        String SQL_QUERY = "SELECT U.*,E.*,CO.*,CA.* FROM USER U INNER JOIN ESTABELECIMENTO E ON E.USER_ID = U.ID INNER JOIN ESTABELECIMENTO_COMIDA EC ON EC.ESTABELECIMENTO_ID = E.ID INNER JOIN COMIDA CO ON CO.ID = EC.COMIDA_ID INNER JOIN CATEGORY CA ON CA.ID = CO.CATEGORY_ID WHERE CA.ID = ?";
+
+        List<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
+
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY, new Object[]{categoryId});
+
+        for (Map<String, Object> row : rows) {
+
+            estabelecimentos.add(populate(row));
+        }
+
+        return estabelecimentos;
+    }
+
     /**
      * @param id
      * @param userId
@@ -80,7 +99,9 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public boolean delete(final int id, final Long userId) {
 
-        int rows = jdbcTemplate.update("DELETE FROM ESTABELECIMENTO WHERE ID = ? AND USER_ID = ?", new Object[]{id, userId});
+        String SQL_QUERY = "DELETE FROM ESTABELECIMENTO WHERE ID = ? AND USER_ID = ?";
+
+        int rows = jdbcTemplate.update(SQL_QUERY, new Object[]{id, userId});
         return (rows > 0 ? true : false);
     }
 
@@ -98,13 +119,15 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public Estabelecimento create(final String name, final Long userId, final String address, final String neighborhood, final String city, final String foto1, final String foto2, final String foto3, final String foto4) {
 
+        final String SQL_QUERY = "INSERT INTO ESTABELECIMENTO(NAME,USER_ID,ADDRESS,NEIGHBORHOOD,CITY,FOTO1,FOTO2,FOTO3,FOTO4) VALUES (?,?,?,?,?,?,?,?,?)";
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 
-                PreparedStatement ps = con.prepareStatement("INSERT INTO ESTABELECIMENTO(NAME,USER_ID,ADDRESS,NEIGHBORHOOD,CITY,FOTO1,FOTO2,FOTO3,FOTO4) VALUES (?,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement(SQL_QUERY);
                 ps.setString(1, name);
                 ps.setLong(2, userId);
                 ps.setString(3, address);
@@ -140,13 +163,13 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public Estabelecimento update(final int id, final String name, final Long userId, final String address, final String neighborhood, final String city, final String foto1, final String foto2, final String foto3, final String foto4) {
 
+        final String SQL_QUERY = "UPDATE ESTABELECIMENTO SET NAME = ? , USER_ID = ?, ADDRESS = ?, NEIGHBORHOOD =  ?, CITY = ?, FOTO1 = ?, FOTO2 = ?, FOTO3 = ?, FOTO4 =? WHERE ID = ?";
+
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 
-                String sql = "UPDATE ESTABELECIMENTO SET NAME = ? , USER_ID = ?, ADDRESS = ?, NEIGHBORHOOD =  ?, CITY = ?, FOTO1 = ?, FOTO2 = ?, FOTO3 = ?, FOTO4 =? WHERE ID = ?";
-
-                PreparedStatement ps = con.prepareStatement(sql);
+                PreparedStatement ps = con.prepareStatement(SQL_QUERY);
 
                 ps.setString(1, name);
                 ps.setLong(2, userId);
@@ -173,9 +196,11 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
     @Override
     public List<Estabelecimento> getByUserId(long userID) {
 
+        String SQL_QUERY = "SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U WHERE U.FACEBOOK_ID = ?";
+
         List<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
 
-        List<Map<String, Object>> rows = jdbcTemplate.queryForList("SELECT E.*,U.* FROM ESTABELECIMENTO E INNER JOIN USER U WHERE U.FACEBOOK_ID = ?", new Object[]{userID});
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQL_QUERY, new Object[]{userID});
 
         for (Map<String, Object> row : rows) {
 
@@ -228,9 +253,9 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
 
         User u = new User();
         u.setType(UserType.PROPRETARIO);
-        u.setFacebookId((Integer) row.get("facebook_id"));
-        u.setCreateDate((Date) row.get("creationDate"));
-        u.setUpdateDate((Date) row.get("updateDate"));
+        u.setFacebookId((Integer) row.get("U.id"));
+        u.setCreateDate((Date) row.get("U.creationDate"));
+        u.setUpdateDate((Date) row.get("U.updateDate"));
 
         Estabelecimento estabelecimento = new Estabelecimento();
 

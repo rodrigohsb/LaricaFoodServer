@@ -1,10 +1,11 @@
 package com.laricafood.resources;
 
 import com.laricafood.bean.Estabelecimento;
-import com.laricafood.dao.impl.ComidaDAOImpl;
 import com.laricafood.dao.impl.EstabelecimentoDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
@@ -14,50 +15,53 @@ import java.util.List;
  * Created by rodrigo.bacellar on 04/03/2015.
  */
 @RestController
-@RequestMapping("/Estabelecimento")
+@RequestMapping("/estabelecimento")
 public class EstabelecimentoResource {
 
     @Autowired
     private EstabelecimentoDAOImpl estabelecimentoDAOImpl;
 
-    @RequestMapping("/getById/{id}")
-    public Estabelecimento getById(@PathParam("id") int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Estabelecimento getById(@PathVariable int id) {
 
-        Estabelecimento estabelecimento = estabelecimentoDAOImpl.getByID(id);
-        return estabelecimento;
+        return estabelecimentoDAOImpl.getByID(id);
     }
 
-    @RequestMapping("/listByUserId")
-    public List<Estabelecimento> listByUserId() {
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+    public List<Estabelecimento> listByUser(@PathVariable Long userId) {
 
-        List<Estabelecimento> estabelecimento = estabelecimentoDAOImpl.getByUserId(583633830);
-        return estabelecimento;
+        return estabelecimentoDAOImpl.getByUserId(userId);
     }
 
-    @RequestMapping("/getAll")
+    @RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
+    public List<Estabelecimento> getByCategory(@PathVariable int categoryId) {
+
+        return estabelecimentoDAOImpl.getByCategory(categoryId);
+    }
+
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     public List<Estabelecimento> getAll() {
 
-        List<Estabelecimento> estabelecimento = estabelecimentoDAOImpl.getAll();
-        return estabelecimento;
+        return estabelecimentoDAOImpl.getAll();
     }
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public boolean create(@PathParam("id") int id, @PathParam("userId") Long userId) {
+
         return estabelecimentoDAOImpl.delete(id, userId);
+
     }
 
-    @RequestMapping("/create")
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public Estabelecimento create(@PathParam("name") String name, @PathParam("userId") Long userId, @PathParam("address") String address, @PathParam("neighborhood") String neighborhood, @PathParam("city") String city, @PathParam("foto1") String foto1, @PathParam("foto2") String foto2, @PathParam("foto3") String foto3, @PathParam("foto4") String foto4) {
 
-        Estabelecimento estabelecimento = estabelecimentoDAOImpl.create(name, userId, address, neighborhood, city, foto1, foto2, foto3, foto4);
-        return estabelecimento;
+        return estabelecimentoDAOImpl.create(name, userId, address, neighborhood, city, foto1, foto2, foto3, foto4);
     }
 
-    @RequestMapping("/update")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public Estabelecimento update(@PathParam("id") int id, @PathParam("name") String name, @PathParam("userId") Long userId, @PathParam("address") String address, @PathParam("neighborhood") String neighborhood, @PathParam("city") String city, @PathParam("foto1") String foto1, @PathParam("foto2") String foto2, @PathParam("foto3") String foto3, @PathParam("foto4") String foto4) {
 
-        Estabelecimento estabelecimento = estabelecimentoDAOImpl.update(id, name, userId, address, neighborhood, city, foto1, foto2, foto3, foto4);
-        return estabelecimento;
+        return estabelecimentoDAOImpl.update(id, name, userId, address, neighborhood, city, foto1, foto2, foto3, foto4);
     }
 
 }
