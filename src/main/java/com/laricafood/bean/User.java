@@ -7,9 +7,9 @@ import java.util.Date;
  */
 public class User {
 
-    private long facebookId;
+    private long id;
 
-    private UserType type;
+    private UserType userType;
 
     private Date createDate;
 
@@ -19,28 +19,28 @@ public class User {
         super();
     }
 
-    public User(long facebookId, UserType type, Date createDate, Date updateDate) {
+    public User(long id, UserType userType, Date createDate, Date updateDate) {
         super();
-        this.facebookId = facebookId;
-        this.type = type;
+        this.id = id;
+        this.userType = userType;
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
 
-    public long getFacebookId() {
-        return facebookId;
+    public long getId() {
+        return id;
     }
 
-    public void setFacebookId(long facebookId) {
-        this.facebookId = facebookId;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public UserType getType() {
-        return type;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setType(UserType type) {
-        this.type = type;
+    public void setUserType(UserType type) {
+        this.userType = type;
     }
 
     public Date getCreateDate() {
@@ -61,7 +61,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [facebookId=" + facebookId + ", type=" + type + ", createDate=" + createDate + ", updateDate="
+        return "User [id=" + id + ", userType=" + userType + ", createDate=" + createDate + ", updateDate="
                 + updateDate + "]";
     }
 

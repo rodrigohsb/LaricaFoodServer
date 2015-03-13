@@ -10,7 +10,7 @@ public class Estabelecimento {
 
     private int id;
     private String name;
-    private User user_id;
+    private User user;
     private String address;
     private String neighborhood;
     private String city;
@@ -45,12 +45,12 @@ public class Estabelecimento {
         this.name = name;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAddress() {
@@ -170,7 +170,7 @@ public class Estabelecimento {
         return "Estabelecimento{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", user_id=" + user_id +
+                ", user=" + user +
                 ", address='" + address + '\'' +
                 ", neighborhood='" + neighborhood + '\'' +
                 ", city='" + city + '\'' +
