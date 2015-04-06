@@ -99,7 +99,7 @@
             <version>1.4.7</version>
         </dependency>
 
-        <!--ACTIVEMQ-->
+        <!--ACTIVEMQ
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activeio-core</artifactId>
@@ -110,6 +110,8 @@
             <artifactId>activemq-core</artifactId>
             <version>${activemq.version}</version>
         </dependency>
+        -->
+        <!-- JODA -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
