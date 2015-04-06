@@ -91,7 +91,12 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
      */
     public List<Estabelecimento> getByCategory(int categoryId) {
 
-        String SQL_QUERY = "SELECT U.*,E.*,CO.*,CA.* FROM USER U INNER JOIN ESTABELECIMENTO E ON E.USER_ID = U.ID INNER JOIN ESTABELECIMENTO_COMIDA EC ON EC.ESTABELECIMENTO_ID = E.ID INNER JOIN COMIDA CO ON CO.ID = EC.COMIDA_ID INNER JOIN CATEGORY CA ON CA.ID = CO.CATEGORY_ID WHERE CA.ID = ?";
+        String SQL_QUERY = "SELECT U.*,E.*,CO.*,CA.* FROM USER U \n" +
+                "INNER JOIN ESTABELECIMENTO E ON E.USER_ID = U.UID \n" +
+                "INNER JOIN ESTABELECIMENTO_COMIDA EC ON EC.ESTABELECIMENTO_ID = E.ESTID \n" +
+                "INNER JOIN COMIDA CO ON CO.COID = EC.COMIDA_ID \n" +
+                "INNER JOIN CATEGORY CA ON CA.CATID = CO.CATEGORY_ID \n" +
+                "WHERE CA.CATID = ?";
 
         List<Estabelecimento> estabelecimentos = new ArrayList<Estabelecimento>();
 

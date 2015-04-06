@@ -34,19 +34,19 @@ public class EstabelecimentoResource {
     }
 
     @RequestMapping(value = "/category/{categoryId}", method = RequestMethod.GET)
-    public List<Estabelecimento> getByCategory(@PathVariable int categoryId) {
+    public List<Estabelecimento> listByCategory(@PathVariable int categoryId) {
 
         return estabelecimentoDAOImpl.getByCategory(categoryId);
     }
 
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
-    public List<Estabelecimento> getAll() {
+    public List<Estabelecimento> listAll() {
 
         return estabelecimentoDAOImpl.getAll();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public boolean create(@PathParam("id") int id, @PathParam("userId") Long userId) {
+    public boolean delete(@PathParam("id") int id, @PathParam("userId") Long userId) {
 
         return estabelecimentoDAOImpl.delete(id, userId);
 

@@ -1,20 +1,27 @@
 package com.laricafood.bean;
 
 /**
- * Created by rodrigo.bacellar on 04/03/2015.
+ * Created by Rodrigo on 03/04/15.
  */
-public enum Category {
+public class Category {
 
-    HAMBURGUER(1), CACHORRO_QUENTE(2), SANDUICHE_NATURAL(3), BATATA_FRITA(4), TAPIOCA(5), CALDO(6), SORVETE(7);
+    private Integer id;
 
-    private int value;
+    private String name;
 
-    Category(int value) {
-        this.value = value;
+    public Integer getId() {
+        return id;
     }
 
-    public int getValue() {
-        return value;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

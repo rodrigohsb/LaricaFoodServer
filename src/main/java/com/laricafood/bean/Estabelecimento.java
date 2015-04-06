@@ -24,7 +24,7 @@ public class Estabelecimento {
     private String foto4;
     private Date createDate;
     private Date updateDate;
-    private List<Comida> comidas;
+    private List<Category> categoryList;
 
     public Estabelecimento() {
     }
@@ -157,12 +157,12 @@ public class Estabelecimento {
         this.updateDate = updateDate;
     }
 
-    public List<Comida> getComidas() {
-        return comidas;
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public void setComidas(List<Comida> comidas) {
-        this.comidas = comidas;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 
     @Override
@@ -184,7 +184,7 @@ public class Estabelecimento {
                 ", foto4='" + foto4 + '\'' +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
-                ", comidas=" + comidas +
+                ", categoryList=" + categoryList +
                 '}';
     }
 }

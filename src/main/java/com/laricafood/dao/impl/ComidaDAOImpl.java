@@ -40,7 +40,8 @@ public class ComidaDAOImpl implements ComidaDAO {
                 comida.setId(rs.getInt("COID"));
                 comida.setName(rs.getString("CO_NAME"));
 
-                Category category = Category.values()[rs.getInt("CATEGORY_ID") - 1];
+                Category category = new Category();
+                category.setId(rs.getInt("CATEGORY_ID"));
                 comida.setCategory(category);
 
                 return comida;
@@ -65,7 +66,9 @@ public class ComidaDAOImpl implements ComidaDAO {
 
             comida.setId((Integer) row1.get("COID"));
             comida.setName((String) row1.get("CO_NAME"));
-            Category category = Category.values()[((Integer) row1.get("CATEGORY_ID")) - 1];
+
+            Category category = new Category();
+            category.setId((Integer) row1.get("CATEGORY_ID"));
             comida.setCategory(category);
 
             comidas.add(comida);
