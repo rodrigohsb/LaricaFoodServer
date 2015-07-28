@@ -3,10 +3,11 @@ package com.laricafood.resources;
 import com.laricafood.bean.Estabelecimento;
 import com.laricafood.dao.impl.EstabelecimentoDAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -14,13 +15,15 @@ import java.util.List;
 /**
  * Created by rodrigo.bacellar on 04/03/2015.
  */
-@RestController
+@Controller
 @RequestMapping("/estabelecimento")
 public class EstabelecimentoResource {
 
+    /*
     @Autowired
     private EstabelecimentoDAOImpl estabelecimentoDAOImpl;
 
+    @ResponseBody
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Estabelecimento getById(@PathVariable int id) {
 
@@ -63,5 +66,6 @@ public class EstabelecimentoResource {
 
         return estabelecimentoDAOImpl.update(id, name, userId, address, neighborhood, city, foto1, foto2, foto3, foto4);
     }
+    */
 
 }

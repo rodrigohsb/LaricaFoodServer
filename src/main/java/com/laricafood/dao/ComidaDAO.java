@@ -7,5 +7,5 @@ import com.laricafood.bean.Comida;
  */
 public interface ComidaDAO {
 
-    public Comida getByID(int id);
+//    public Comida getByID(int id);
 }

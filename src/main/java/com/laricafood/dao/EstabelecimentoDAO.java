@@ -9,6 +9,7 @@ import java.util.List;
  */
 public interface EstabelecimentoDAO {
 
+    /*
     Estabelecimento getByID(int id);
 
     List<Estabelecimento> getByUserId(long userID);
@@ -20,4 +21,5 @@ public interface EstabelecimentoDAO {
     boolean delete(final int id, final Long userId);
 
     List<Estabelecimento> getAll();
+    */
 }

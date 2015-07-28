@@ -7,6 +7,6 @@ import com.laricafood.bean.User;
  */
 public interface UserDAO {
 
-    public User getUserByID(String id);
+//    public User getUserByID(String id);
 
 }

@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CategoryDAO {
 
-    public List<Category> listAll();
+//    public List<Category> listAll();
 }

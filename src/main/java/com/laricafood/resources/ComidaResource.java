@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/comida")
 public class ComidaResource {
 
-    @Autowired
-    private ComidaDAOImpl ComidaDAOImpl;
+//    @Autowired
+//    private ComidaDAOImpl ComidaDAOImpl;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Comida getById(@PathVariable int id) {
+    public void getById(@PathVariable int id) {
 
-        return ComidaDAOImpl.getByID(id);
+//        return ComidaDAOImpl.getByID(id);
     }
 }

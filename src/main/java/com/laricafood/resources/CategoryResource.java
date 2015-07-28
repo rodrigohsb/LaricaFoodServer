@@ -16,12 +16,12 @@ import java.util.List;
 @RequestMapping("/category")
 public class CategoryResource {
 
-    @Autowired
-    CategoryDAOimpl categoryDAOimpl;
+//    @Autowired
+//    CategoryDAOimpl categoryDAOimpl;
 
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
-    public List<Category> listAll() {
+    public void listAll() {
 
-        return categoryDAOimpl.listAll();
+//        return categoryDAOimpl.listAll();
     }
 }

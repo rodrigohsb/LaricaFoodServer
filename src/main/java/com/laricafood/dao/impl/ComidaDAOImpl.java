@@ -22,6 +22,7 @@ import java.util.Map;
 @Component
 public class ComidaDAOImpl implements ComidaDAO {
 
+    /*
     private Logger LOGGER = LoggerFactory.getLogger(ComidaDAOImpl.class);
 
     @Autowired
@@ -76,4 +77,5 @@ public class ComidaDAOImpl implements ComidaDAO {
 
         return comidas;
     }
+    */
 }

@@ -9,22 +9,32 @@ public class User {
 
     private long id;
 
-    private UserType userType;
+    private int type;
 
-    private Date createDate;
+    private String facebookId;
 
-    private Date updateDate;
+    private String firstName;
+
+    private String middleName;
+
+    private String lastName;
+
+    private String pictureUrl;
+
+    private Date creationDate;
 
     public User() {
-        super();
     }
 
-    public User(long id, UserType userType, Date createDate, Date updateDate) {
-        super();
+    public User(long id, int type, String facebookId, String firstName, String middleName, String lastName, String pictureUrl, Date creationDate) {
         this.id = id;
-        this.userType = userType;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.type = type;
+        this.facebookId = facebookId;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.pictureUrl = pictureUrl;
+        this.creationDate = creationDate;
     }
 
     public long getId() {
@@ -35,34 +45,73 @@ public class User {
         this.id = id;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public String getFacebookId() {
+        return facebookId;
     }
 
-    public void setUserType(UserType type) {
-        this.userType = type;
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", userType=" + userType + ", createDate=" + createDate + ", updateDate="
-                + updateDate + "]";
+        return "User{" +
+                "id=" + id +
+                ", facebookId='" + facebookId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
     }
 
 }

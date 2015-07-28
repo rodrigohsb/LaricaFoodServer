@@ -2,8 +2,6 @@ package com.laricafood.dao.impl;
 
 import com.laricafood.bean.Category;
 import com.laricafood.dao.CategoryDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,8 +16,7 @@ import java.util.Map;
 @Repository
 public class CategoryDAOimpl implements CategoryDAO {
 
-    private Logger LOGGER = LoggerFactory.getLogger(ComidaDAOImpl.class);
-
+    /*
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -42,4 +39,5 @@ public class CategoryDAOimpl implements CategoryDAO {
 
         return categoryList;
     }
+    */
 }

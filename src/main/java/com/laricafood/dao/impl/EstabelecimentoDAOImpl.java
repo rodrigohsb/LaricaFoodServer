@@ -1,25 +1,7 @@
 package com.laricafood.dao.impl;
 
-import com.laricafood.bean.*;
 import com.laricafood.dao.EstabelecimentoDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by rodrigo.bacellar on 04/03/2015.
@@ -27,19 +9,14 @@ import java.util.Map;
 @Component
 public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
 
+    /*
     private Logger LOGGER = LoggerFactory.getLogger(EstabelecimentoDAOImpl.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private ComidaDAOImpl comidaDAOImpl;
-
-    /**
-     * Todos os estabelecimentos.
-     *
-     * @return
-     */
+    private CategoryDAOimpl categoryDAOimpl;
     @Override
     public List<Estabelecimento> getAll() {
 
@@ -54,21 +31,13 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
 
         for (Estabelecimento estabelecimento : estabelecimentos) {
 
-            List<Comida> comidas = comidaDAOImpl.getByEstabelecimentoID(estabelecimento.getId());
-
             //TODO Agrupar a lista de comida por categorias.
-            estabelecimento.setComidas(comidas);
+            estabelecimento.setCategoryList(categoryDAOimpl.listAll());
         }
 
         return estabelecimentos;
     }
 
-    /**
-     * Obtem o Estabelecimento a partir do ID.
-     *
-     * @param id
-     * @return
-     */
     @Override
     public Estabelecimento getByID(int id) {
 
@@ -85,10 +54,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return estabelecimento;
     }
 
-    /**
-     * @param categoryId
-     * @return
-     */
     public List<Estabelecimento> getByCategory(int categoryId) {
 
         String SQL_QUERY = "SELECT U.*,E.*,CO.*,CA.* FROM USER U \n" +
@@ -110,11 +75,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return estabelecimentos;
     }
 
-    /**
-     * @param id
-     * @param userId
-     * @return
-     */
     @Override
     public boolean delete(final int id, final Long userId) {
 
@@ -124,18 +84,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return (rows > 0 ? true : false);
     }
 
-    /**
-     * @param name
-     * @param userId
-     * @param address
-     * @param neighborhood
-     * @param city
-     * @param foto1
-     * @param foto2
-     * @param foto3
-     * @param foto4
-     * @return
-     */
     @Override
     public Estabelecimento create(final String name, final Long userId, final String address, final String neighborhood, final String city, final String foto1, final String foto2, final String foto3, final String foto4) {
 
@@ -168,19 +116,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
     }
 
 
-    /**
-     * @param id
-     * @param name
-     * @param userId
-     * @param address
-     * @param neighborhood
-     * @param city
-     * @param foto1
-     * @param foto2
-     * @param foto3
-     * @param foto4
-     * @return
-     */
     @Override
     public Estabelecimento update(final int id, final String name, final Long userId, final String address, final String neighborhood, final String city, final String foto1, final String foto2, final String foto3, final String foto4) {
 
@@ -210,10 +145,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return getByID(id);
     }
 
-    /**
-     * @param userID
-     * @return
-     */
     @Override
     public List<Estabelecimento> getByUserId(long userID) {
 
@@ -232,11 +163,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
     }
 
 
-    /**
-     * @param resultSet
-     * @return
-     * @throws SQLException
-     */
     private Estabelecimento populate(ResultSet resultSet) throws SQLException {
 
         User u = new User();
@@ -266,10 +192,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         return estabelecimento;
     }
 
-    /**
-     * @param row
-     * @return
-     */
     private Estabelecimento populate(Map<String, Object> row) {
 
         Estabelecimento estabelecimento = new Estabelecimento();
@@ -293,5 +215,6 @@ public class EstabelecimentoDAOImpl implements EstabelecimentoDAO {
         estabelecimento.setUpdateDate((Date) row.get("EST_UPDATEDATE"));
         return estabelecimento;
     }
+    */
 
 }
